@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cannes y Gatos – Productos Veterinarios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FDF6EE;
+      --warm-tan: #E8D5B7;
+      --terracotta: #C97B4B;
+      --deep-brown: #4A2C17;
+      --sage: #7A9E7E;
+      --soft-pink: #F2C4A0;
+      --text: #3A2010;
+      --text-light: #7A5C40;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(253,246,238,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--warm-tan);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--deep-brown);
+      letter-spacing: 0.01em;
+    }
+    .logo span { color: var(--terracotta); font-style: italic; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.92rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-light);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta {
+      background: var(--terracotta); color: #fff !important;
+      padding: 0.55rem 1.4rem; border-radius: 50px;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--deep-brown) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 3rem 5rem 5rem;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--soft-pink); color: var(--deep-brown);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.45rem 1rem;
+      border-radius: 50px; width: fit-content;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-badge::before { content: "🐾"; font-size: 0.9rem; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.12;
+      color: var(--deep-brown);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 em { color: var(--terracotta); font-style: italic; }
+
+    .hero-sub {
+      font-size: 1.1rem; line-height: 1.75;
+      color: var(--text-light); max-width: 42ch;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--terracotta); color: #fff;
+      padding: 0.9rem 2.2rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,123,75,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--deep-brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(74,44,23,0.3);
+    }
+    .btn-secondary {
+      border: 2px solid var(--warm-tan);
+      color: var(--deep-brown); background: transparent;
+      padding: 0.9rem 2.2rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--terracotta);
+      background: var(--soft-pink);
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3.5rem;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .stat { display: flex; flex-direction: column; gap: 0.15rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--terracotta);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-light); letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--warm-tan) 0%, var(--soft-pink) 100%);
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,123,75,0.18) 0%, transparent 65%);
+    }
+    .hero-illustration {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+    }
+    .big-paw {
+      font-size: 9rem; opacity: 0.12;
+      position: absolute; bottom: -1rem; right: -1rem;
+      transform: rotate(-15deg);
+      animation: float 4s ease-in-out infinite;
+    }
+    .product-cards-preview {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; padding: 2rem; z-index: 1;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .pcard {
+      background: rgba(253,246,238,0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 16px; padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      box-shadow: 0 4px 20px rgba(74,44,23,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .pcard:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(74,44,23,0.18); }
+    .pcard-icon { font-size: 2.4rem; }
+    .pcard-name { font-weight: 700; font-size: 0.82rem; color: var(--deep-brown); text-align: center; }
+    .pcard-price { font-size: 0.9rem; color: var(--terracotta); font-weight: 700; }
+    .pcard-tag {
+      font-size: 0.68rem; background: var(--sage); color: #fff;
+      padding: 0.2rem 0.6rem; border-radius: 50px; font-weight: 700;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 6rem 5rem;
+      background: var(--deep-brown);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .feature-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-4px);
+    }
+    .feature-icon { font-size: 2.4rem; margin-bottom: 1.2rem; display: block; }
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; color: var(--soft-pink);
+      margin-bottom: 0.75rem;
+    }
+    .feature-card p { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    /* ── PRODUCTOS DESTACADOS ── */
+    .products-section { padding: 6rem 5rem; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; color: var(--deep-brown);
+      margin-bottom: 0.5rem;
+    }
+    .section-title em { color: var(--terracotta); font-style: italic; }
+    .section-sub { color: var(--text-light); font-size: 1rem; margin-bottom: 3rem; }
+
+    .products-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .product-tile {
+      background: #fff; border-radius: 20px;
+      overflow: hidden; box-shadow: 0 2px 15px rgba(74,44,23,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .product-tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(74,44,23,0.15);
+    }
+    .product-img {
+      height: 180px; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+    .product-img.bg1 { background: linear-gradient(135deg, #FDE8D8, #F2C4A0); }
+    .product-img.bg2 { background: linear-gradient(135deg, #D8EDD8, #B8D8B8); }
+    .product-img.bg3 { background: linear-gradient(135deg, #D8E8F0, #B8D0E0); }
+    .product-img.bg4 { background: linear-gradient(135deg, #F0E8D8, #E0D0B8); }
+    .new-badge {
+      position: absolute; top: 0.8rem; right: 0.8rem;
+      background: var(--terracotta); color: #fff;
+      font-size: 0.65rem; font-weight: 700;
+      padding: 0.25rem 0.6rem; border-radius: 50px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .product-info { padding: 1.2rem; }
+    .product-info h4 { font-weight: 700; font-size: 0.95rem; color: var(--deep-brown); margin-bottom: 0.3rem; }
+    .product-info .pdesc { font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.8rem; line-height: 1.5; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .price { font-weight: 700; color: var(--terracotta); font-size: 1.05rem; }
+    .add-btn {
+      background: var(--deep-brown); color: #fff;
+      border: none; border-radius: 50px;
+      padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .add-btn:hover { background: var(--terracotta); }
+
+    /* ── TESTIMONIOS ── */
+    .testimonials {
+      background: var(--warm-tan);
+      padding: 5rem 5rem;
+    }
+    .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .test-card {
+      background: #fff; border-radius: 20px; padding: 2rem;
+      position: relative;
+    }
+    .test-card::before {
+      content: '"'; font-family: 'Playfair Display', serif;
+      font-size: 4rem; color: var(--soft-pink);
+      position: absolute; top: 0.5rem; left: 1.2rem;
+      line-height: 1;
+    }
+    .test-text { font-size: 0.95rem; line-height: 1.75; color: var(--text-light); margin-top: 1.5rem; margin-bottom: 1.5rem; }
+    .test-author { display: flex; align-items: center; gap: 0.8rem; }
+    .test-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--soft-pink); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .test-name { font-weight: 700; font-size: 0.9rem; color: var(--deep-brown); }
+    .test-pet { font-size: 0.78rem; color: var(--text-light); }
+    .stars { color: var(--terracotta); font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    /* ── TIENDA / CONTACTO ── */
+    #tienda {
+      padding: 6rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+    .store-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; color: var(--deep-brown); margin-bottom: 0.6rem;
+    }
+    .store-left h2 em { color: var(--terracotta); font-style: italic; }
+    .store-left p { color: var(--text-light); line-height: 1.75; margin-bottom: 2rem; font-size: 0.98rem; }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem; border-radius: 14px;
+      background: #fff; box-shadow: 0 2px 15px rgba(74,44,23,0.06);
+      margin-bottom: 1rem; transition: box-shadow 0.2s;
+    }
+    .contact-item:hover { box-shadow: 0 6px 25px rgba(74,44,23,0.12); }
+    .contact-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--soft-pink); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .contact-detail h4 { font-weight: 700; font-size: 0.9rem; color: var(--deep-brown); }
+    .contact-detail p { font-size: 0.85rem; color: var(--text-light); margin-top: 0.15rem; }
+
+    .map-placeholder {
+      margin-top: 1.5rem;
+      height: 180px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--warm-tan), var(--soft-pink));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative; overflow: hidden;
+    }
+    .map-placeholder::after {
+      content: 'Ver en Google Maps →';
+      position: absolute; bottom: 1rem; right: 1rem;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--deep-brown); letter-spacing: 0.04em;
+    }
+
+    /* FORM */
+    .contact-form-card {
+      background: var(--deep-brown);
+      border-radius: 24px; padding: 3rem;
+      color: #fff;
+    }
+    .contact-form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; margin-bottom: 0.5rem;
+    }
+    .contact-form-card h3 em { color: var(--soft-pink); font-style: italic; }
+    .contact-form-card p { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.7); display: block; margin-bottom: 0.5rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 0.85rem 1.1rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px; color: #fff;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--soft-pink);
+      background: rgba(255,255,255,0.12);
+    }
+    .form-group select option { background: var(--deep-brown); color: #fff; }
+    .form-group textarea { height: 110px; resize: none; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      background: var(--terracotta); color: #fff;
+      border: none; border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+      cursor: pointer; margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,123,75,0.4);
+    }
+    .submit-btn:hover {
+      background: #E8935A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,123,75,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep-brown); color: rgba(255,255,255,0.55);
+      text-align: center; padding: 2.5rem 3rem;
+      font-size: 0.85rem;
+    }
+    footer span { color: var(--soft-pink); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: rotate(-15deg) translateY(0); }
+      50%       { transform: rotate(-15deg) translateY(-12px); }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--warm-tan); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Cannes <span>&</span> Gatos</div>
+  <ul class="nav-links">
+    <li><a href="#home">Inicio</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#tienda" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- PANTALLA 1: HOME -->
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-badge">Distribuidores veterinarios</div>
+    <h1>Todo lo que tu<br/>mascota <em>merece,</em><br/>en un solo lugar.</h1>
+    <p class="hero-sub">Productos veterinarios de calidad para perros y gatos. Porque ellos son familia, y merecen lo mejor.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver productos</a>
+      <a href="#tienda" class="btn-secondary">Ir a la tienda</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">+500</span>
+        <span class="stat-label">Productos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8 años</span>
+        <span class="stat-label">De experiencia</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">+2k</span>
+        <span class="stat-label">Mascotas felices</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="big-paw">🐾</div>
+    <div class="hero-illustration">
+      <div class="product-cards-preview">
+        <div class="pcard">
+          <span class="pcard-icon">💊</span>
+          <span class="pcard-name">Antiparasitarios</span>
+          <span class="pcard-price">Desde $18.000</span>
+          <span class="pcard-tag">Top ventas</span>
+        </div>
+        <div class="pcard">
+          <span class="pcard-icon">🦴</span>
+          <span class="pcard-name">Snacks & Premios</span>
+          <span class="pcard-price">Desde $12.000</span>
+          <span class="pcard-tag">Nuevo</span>
+        </div>
+        <div class="pcard">
+          <span class="pcard-icon">🛁</span>
+          <span class="pcard-name">Higiene & Baño</span>
+          <span class="pcard-price">Desde $22.000</span>
+          <span class="pcard-tag">Popular</span>
+        </div>
+        <div class="pcard">
+          <span class="pcard-icon">🩺</span>
+          <span class="pcard-name">Medicamentos</span>
+          <span class="pcard-price">Desde $8.000</span>
+          <span class="pcard-tag">Recetados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature-card">
+    <span class="feature-icon">🏥</span>
+    <h3>Respaldo veterinario</h3>
+    <p>Todos nuestros productos están avalados por veterinarios certificados. Tu mascota está en buenas manos.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">🚀</span>
+    <h3>Entrega rápida</h3>
+    <p>Despachos a toda la ciudad en 24 horas. Porque la salud de tu mascota no puede esperar.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">💬</span>
+    <h3>Asesoría personalizada</h3>
+    <p>¿Dudas sobre qué producto elegir? Nuestro equipo te orienta por WhatsApp, sin costo adicional.</p>
+  </div>
+</div>
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="products-section" id="productos">
+  <div class="section-label">Catálogo</div>
+  <h2 class="section-title">Nuestros productos <em>más amados</em></h2>
+  <p class="section-sub">Selección curada para perros, gatos y sus familias.</p>
+
+  <div class="products-grid">
+    <div class="product-tile">
+      <div class="product-img bg1">
+        🐶
+        <span class="new-badge">Top</span>
+      </div>
+      <div class="product-info">
+        <h4>Pipeta Antiparasitaria</h4>
+        <p class="pdesc">Protección mensual contra pulgas y garrapatas. Para perros medianos.</p>
+        <div class="product-footer">
+          <span class="price">$24.900</span>
+          <button class="add-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile">
+      <div class="product-img bg2">
+        🐱
+        <span class="new-badge">Nuevo</span>
+      </div>
+      <div class="product-info">
+        <h4>Shampoo Natural Gatos</h4>
+        <p class="pdesc">Fórmula suave hipoalergénica. Con aceite de argán y aloe vera.</p>
+        <div class="product-footer">
+          <span class="price">$31.500</span>
+          <button class="add-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile">
+      <div class="product-img bg3">🦴</div>
+      <div class="product-info">
+        <h4>Snack Dental Perros</h4>
+        <p class="pdesc">Cuida la salud bucal mientras premia. Sabor pollo y vegetales.</p>
+        <div class="product-footer">
+          <span class="price">$18.000</span>
+          <button class="add-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile">
+      <div class="product-img bg4">💊</div>
+      <div class="product-info">
+        <h4>Vitaminas Articulares</h4>
+        <p class="pdesc">Glucosamina y condroitina. Ideal para razas grandes mayores de 5 años.</p>
+        <div class="product-footer">
+          <span class="price">$42.000</span>
+          <button class="add-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="section-label">Testimonios</div>
+  <h2 class="section-title">Lo que dicen las <em>familias</em></h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">Llevo 3 años comprando aquí los productos para mi golden. La calidad es excelente y el equipo siempre me orienta muy bien.</p>
+      <div class="test-author">
+        <div class="test-avatar">👩</div>
+        <div>
+          <div class="test-name">Valentina Gómez</div>
+          <div class="test-pet">Mamá de Bruno 🐕</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">El shampoo para mi gata llegó en tiempo récord. Se lo recomiendo a todos los que buscan productos de calidad real.</p>
+      <div class="test-author">
+        <div class="test-avatar">👨</div>
+        <div>
+          <div class="test-name">Carlos Restrepo</div>
+          <div class="test-pet">Papá de Luna 🐈</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">Me encanta que puedo pedir asesoría por WhatsApp antes de comprar. Se nota que realmente les importa la salud de los animales.</p>
+      <div class="test-author">
+        <div class="test-avatar">👩‍🦱</div>
+        <div>
+          <div class="test-name">Marcela Torres</div>
+          <div class="test-pet">Mamá de Milo y Cleo 🐾</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANTALLA 2: TIENDA / CONTACTO -->
+<section id="tienda">
+  <div class="store-left">
+    <div class="section-label">Encuéntranos</div>
+    <h2>Visítanos o<br/><em>escríbenos</em></h2>
+    <p>Estamos aquí para ayudarte a encontrar el producto ideal para tu mascota. Atendemos de manera presencial, por teléfono y también online.</p>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div class="contact-detail">
+        <h4>Dirección</h4>
+        <p>Calle 85 # 13-42, Bogotá, Colombia</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div class="contact-detail">
+        <h4>Teléfono y WhatsApp</h4>
+        <p>+57 315 456 7890</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div class="contact-detail">
+        <h4>Horarios</h4>
+        <p>Lun – Vie: 8:00am – 6:00pm &nbsp;|&nbsp; Sáb: 9:00am – 2:00pm</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-detail">
+        <h4>Correo</h4>
+        <p>hola@cannesygatos.com</p>
+      </div>
+    </div>
+
+    <div class="map-placeholder">🗺️</div>
+  </div>
+
+  <div>
+    <div class="contact-form-card">
+      <h3>Haz tu <em>pedido</em></h3>
+      <p>Completa el formulario y te contactamos en menos de 2 horas.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+57 300 000 0000"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tu@correo.com"/>
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitas?</label>
+        <select>
+          <option value="">Selecciona una categoría</option>
+          <option>Antiparasitarios</option>
+          <option>Medicamentos</option>
+          <option>Higiene y baño</option>
+          <option>Snacks y premios</option>
+          <option>Vitaminas y suplementos</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cuéntanos más</label>
+        <textarea placeholder="Describe qué necesitas para tu mascota..."></textarea>
+      </div>
+      <button class="submit-btn">Enviar pedido 🐾</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Cannes y Gatos</span> · Todos los derechos reservados · Bogotá, Colombia</p>
+</footer>
+
+</body>
+</html>
